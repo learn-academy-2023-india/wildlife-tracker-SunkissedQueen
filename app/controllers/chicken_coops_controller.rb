@@ -3,12 +3,24 @@ class ChickenCoopsController < ApplicationController
     @chickens = ChickenCoop.all
     render json: @chickens
   end
+
   def show
     chicken = ChickenCoop.find(params[:id])
     render json: chicken
   end
+
   def create
     chicken = ChickenCoop.create(chicken_params)
+    if chicken.valid?
+      render json: chicken
+    else
+      render json: chicken.errors
+    end
+  end
+
+  def update
+    chicken = ChickenCoop.find(params[:id])
+    chicken.update(chicken_params)
     if chicken.valid?
       render json: chicken
     else

@@ -105,3 +105,31 @@ return the new instance that was saved to the database
 ```
     - Click the send button
     - Body -> Pretty -> JSON
+
+## update
+return the saved modifications to the database
+### controller
+```rb
+  def update
+    chicken = ChickenCoop.find(params[:id])
+    chicken.update(chicken_params)
+    if chicken.valid?
+      render json: chicken
+    else
+      render json: chicken.errors
+    end
+  end
+```
+### Postman
+    - PATCH ->  localhost:3000/chicken_coops/5
+    - Body -> raw -> JSON
+```bash
+    # keys are strings for the JSON data
+    # only provide the key:value pairs that will be modified
+    {
+        "name": "Chance",
+        "variant": "Rooster"
+    }
+```
+    - Click the send button
+    - Body -> Pretty -> JSON
