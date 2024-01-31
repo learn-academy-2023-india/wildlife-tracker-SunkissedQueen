@@ -72,3 +72,36 @@ end
     - Click the send button
     - Body -> Pretty -> JSON
 
+## create
+return the new instance that was saved to the database
+## controller
+```rb
+  def create
+    chicken = ChickenCoop.create(chicken_params)
+    # if saved,response with the new chicken as json
+    if chicken.valid?
+      render json: chicken
+    # if not, response with errors
+    else
+      render json: chicken.errors
+    end
+  end
+
+  private
+  def chicken_params
+    params.require(:chicken_coop).permit(:name, :variant, :origin)
+  end
+```
+## Postman
+    - POST ->  localhost:3000/chicken_coops
+    - Body -> raw -> JSON
+```bash
+    # keys are strings for the JSON data
+    {
+        "name": "Chanticleer",
+        "variant": "Chicken",
+        "origin": "Independent Studio"
+    }
+```
+    - Click the send button
+    - Body -> Pretty -> JSON
