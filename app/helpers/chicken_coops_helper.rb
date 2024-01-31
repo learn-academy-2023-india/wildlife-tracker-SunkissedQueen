@@ -1,0 +1,2 @@
+module ChickenCoopsHelper
+end
