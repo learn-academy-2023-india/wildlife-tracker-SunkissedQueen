@@ -47,9 +47,28 @@ class ChickenCoopsController < ApplicationController
   # index API endpoint
   def index
     # active record query for all the instances
-    @chickens = ChickenCoop.all
+    chickens = ChickenCoop.all
     # no views, render the json
-    render json: @chickens
+    render json: chickens
   end
 end
 ```
+### Postman
+    - GET ->  localhost:3000/chicken_coops
+    - Click the send button
+    - Body -> Pretty -> JSON
+
+## show
+returns one instance 
+## controller
+```rb
+def show
+  chicken = ChickenCoop.find(params[:id])
+  render json: chicken
+end
+```
+## Postman
+    - GET ->  localhost:3000/chicken_coops/3
+    - Click the send button
+    - Body -> Pretty -> JSON
+
