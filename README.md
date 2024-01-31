@@ -25,3 +25,31 @@
     c) Save changes to db schema
     d) Scaffold entries
     e) Disable the authenticity token
+
+## Work flow
+- create branch for each API endpoint (index, create, show, update, destroy)
+- create a controller method for that endpoint
+- To see available routes: $ rails routes -E
+- Postman instructions:
+    - http verb -> url 
+    - Click the send button
+    - Body -> Pretty -> JSON
+- Status codes
+    - 200 OK means a successful response
+    - 404 Not found means the route does not exist
+    - To see the error: Body -> Preview
+
+## index
+send all the instances
+### controller
+```rb
+class ChickenCoopsController < ApplicationController
+  # index API endpoint
+  def index
+    # active record query for all the instances
+    @chickens = ChickenCoop.all
+    # no views, render the json
+    render json: @chickens
+  end
+end
+```
